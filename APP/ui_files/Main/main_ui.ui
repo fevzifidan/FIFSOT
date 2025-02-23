@@ -1,0 +1,1775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>844</width>
+    <height>630</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton {
+	border-radius:10px;
+}
+
+QPushButton:pressed {
+	color:#555555;
+}
+
+QPushButton[objectName=&quot;btn_close_window&quot;]{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/close_1_white.png&quot;);
+}
+
+QPushButton[objectName=&quot;btn_close_window&quot;]:hover{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/close_1_red.png&quot;);
+}
+
+QPushButton[objectName=&quot;btn_close_window&quot;]:pressed{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/close_1_white.png&quot;);
+}
+
+QPushButton[objectName=&quot;btn_expand_window&quot;]{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/expand_2_white.png&quot;)
+}
+
+QPushButton[objectName=&quot;btn_expand_window&quot;]:hover{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/expand_2_blue.png&quot;)
+}
+
+QPushButton[objectName=&quot;btn_expand_window&quot;]:pressed{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/expand_2_white.png&quot;)
+}
+
+QPushButton[objectName=&quot;btn_minimize_window&quot;]{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/down_arrow_2_white.png&quot;)
+}
+
+QPushButton[objectName=&quot;btn_minimize_window&quot;]:hover{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/down_arrow_2_blue.png&quot;)
+}
+
+QPushButton[objectName=&quot;btn_minimize_window&quot;]:pressed{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/down_arrow_2_white.png&quot;)
+}
+
+QPushButton[objectName=&quot;btn_menu_window&quot;]{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/dot_menu_white.png&quot;)
+}
+
+QPushButton[objectName=&quot;btn_menu_window&quot;]:hover{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/dot_menu_blue.png&quot;)
+}
+
+QPushButton[objectName=&quot;btn_menu_window&quot;]:pressed{
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/dot_menu_white.png&quot;)
+}
+
+QRadioButton::indicator:checked{
+	image:url(&quot;:/yeniÖnek/fifsot_icons/radio_checked_blue.png&quot;);
+	width:13px;
+	height:13px;
+}
+
+QRadioButton::indicator:unchecked{
+	image:url(&quot;:/yeniÖnek/fifsot_icons/radio_unchecked_blue.png&quot;);
+	width:13px;
+	height:13px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">#centralwidget{
+	background-color:#555555;
+}
+
+QScrollBar::handle{
+	background-color:#6B6B6B;
+}
+
+QScrollBar::handle:pressed{
+	background-color:#555555;
+}
+
+QScrollBar::handle:horizontal{
+	border-radius:7px;
+}
+
+QScrollBar:horizontal{
+	height: 10px;
+}</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item row="0" column="0" colspan="3">
+     <widget class="QWidget" name="widget_frame" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>42</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>42</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget[objectName=&quot;widget_frame&quot;]{
+	background-color:#3B3B3B;
+	background-color:#101524;
+}
+
+QPushButton{
+	background-color:none;
+	border-radius:0px;
+}
+
+QLabel{
+	background-color:none;
+	color:#FFFFFF;
+}
+
+#lbl_titlebar_text{
+	font:12px;
+}</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="lbl_titlebar_icon">
+         <property name="minimumSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="../deneme.qrc">:/yeniÖnek/fifsot_icons/F_Icon_1.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>15</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_titlebar_text">
+         <property name="minimumSize">
+          <size>
+           <width>110</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>FIFSOT v1.0.0 - Beta</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>330</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>25</height>
+          </size>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <property name="spacing">
+           <number>20</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="btn_menu_window">
+            <property name="minimumSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>12</width>
+              <height>12</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_minimize_window">
+            <property name="minimumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>12</width>
+              <height>12</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_expand_window">
+            <property name="minimumSize">
+             <size>
+              <width>22</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>22</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btn_close_window">
+            <property name="minimumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0" rowspan="3">
+     <widget class="QWidget" name="widget_short_menu" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>61</width>
+        <height>451</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>61</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget[objectName=&quot;widget_short_menu&quot;]{
+	background-color:#101524;
+}
+
+#btn_short_menu_menu{
+	background-color:none;
+	padding:10px;
+	border:none;
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/Menu_Icon_2.png&quot;);
+}
+
+#btn_short_menu_menu:hover{
+	background-color:none;
+	padding:10px;
+	border:none;
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/menu_clicked.png&quot;);
+}
+
+#lbl_short_menu_header{
+	color:#FFFFFF;
+	background-color:none;
+	font:14px;
+}
+
+QPushButton{
+	color:#F0F0F0;
+	background-color:transparent;
+	text-align:left;
+	padding-left:12px;
+	border-radius:0px;
+	border-left:2px solid transparent;
+}
+
+QPushButton:hover{
+	border-left:2px solid #40E0D0;
+}</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <item>
+          <widget class="QPushButton" name="btn_short_menu_menu">
+           <property name="minimumSize">
+            <size>
+             <width>41</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>41</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_12">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>38</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::HLine</enum>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_short_menu_copy">
+         <property name="minimumSize">
+          <size>
+           <width>31</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>31</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/copy_files.png</normaloff>:/yeniÖnek/fifsot_icons/copy_files.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_short_menu_delete">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/delete.png</normaloff>:/yeniÖnek/fifsot_icons/delete.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_short_menu_red">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/remove_directory.png</normaloff>:/yeniÖnek/fifsot_icons/remove_directory.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_short_menu_rename">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/rename.png</normaloff>:/yeniÖnek/fifsot_icons/rename.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_short_menu_count">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/count_1.png</normaloff>:/yeniÖnek/fifsot_icons/count_1.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_short_menu_symlinks">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/symlink.png</normaloff>:/yeniÖnek/fifsot_icons/symlink.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_short_menu_whoIs">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/search.png</normaloff>:/yeniÖnek/fifsot_icons/search.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_short_menu_archive">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/archive_1_blue.png</normaloff>:/yeniÖnek/fifsot_icons/archive_1_blue.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_short_menu_scenario">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/scenario.png</normaloff>:/yeniÖnek/fifsot_icons/scenario.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="1" rowspan="3">
+     <widget class="QWidget" name="widget_long_menu" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>171</width>
+        <height>451</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>171</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QWidget[objectName=&quot;widget_long_menu&quot;]{
+	background-color:#101524;
+}
+
+#btn_long_menu_menu{
+	background-color:none;
+	padding:10px;
+	border:none;
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/Menu_Icon_2.png&quot;);
+}
+
+#btn_long_menu_menu:hover{
+	background-color:none;
+	padding:10px;
+	border:none;
+	icon:url(&quot;:/yeniÖnek/fifsot_icons/menu_clicked.png&quot;);
+}
+
+#lbl_long_menu_header{
+	color:#FFFFFF;
+	background-color:none;
+	font:14px;
+}
+
+QPushButton{
+	color:#F0F0F0;
+	background-color:#2b3247;
+	background-color:transparent;
+	text-align:left;
+	padding-left:12px;
+	border-radius:0px;
+	border-left:2px solid transparent;
+}
+
+QPushButton:hover{
+	border-left:2px solid #40E0D0;
+}</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="btn_long_menu_menu">
+           <property name="minimumSize">
+            <size>
+             <width>41</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>41</width>
+             <height>31</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="lbl_long_menu_header">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>38</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>38</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Menu</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>38</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame">
+         <property name="frameShape">
+          <enum>QFrame::HLine</enum>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_long_menu_copy">
+         <property name="minimumSize">
+          <size>
+           <width>153</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Copy</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/copy_files.png</normaloff>:/yeniÖnek/fifsot_icons/copy_files.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_long_menu_delete">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Delete</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/delete.png</normaloff>:/yeniÖnek/fifsot_icons/delete.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_long_menu_red">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>R.E.D.</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/remove_directory.png</normaloff>:/yeniÖnek/fifsot_icons/remove_directory.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_long_menu_rename">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Rename</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/rename.png</normaloff>:/yeniÖnek/fifsot_icons/rename.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_long_menu_count">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Count</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/count_1.png</normaloff>:/yeniÖnek/fifsot_icons/count_1.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_long_menu_symlinks">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Symlinks</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/symlink.png</normaloff>:/yeniÖnek/fifsot_icons/symlink.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_long_menu_whoIs">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>WhoIs?</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/search.png</normaloff>:/yeniÖnek/fifsot_icons/search.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_long_menu_archive">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Archive</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/archive_1_blue.png</normaloff>:/yeniÖnek/fifsot_icons/archive_1_blue.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_long_menu_scenario">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>31</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Scenario</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../deneme.qrc">
+           <normaloff>:/yeniÖnek/fifsot_icons/scenario.png</normaloff>:/yeniÖnek/fifsot_icons/scenario.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>16</width>
+           <height>16</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QStackedWidget" name="stackedWidget_header">
+      <property name="styleSheet">
+       <string notr="true">QWidget{
+	background-color:#EAEAEA;
+}
+
+#lbl_fifsot_header, #lbl_upgrade_header, #lbl_problems_header{
+	font:24px;
+}
+
+#btn_go_and_learn, #btn_go_version, #btn_let_us_know{
+	background-color:#40E0D0;
+}
+
+#btn_go_and_learn:hover, #btn_go_version:hover, #btn_let_us_know:hover{
+	border:1px solid #2BA699;
+}</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="lbl_fifsot_header">
+              <property name="minimumSize">
+               <size>
+                <width>380</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>FIFSOT</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_hello_message">
+              <property name="minimumSize">
+               <size>
+                <width>380</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>340</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>New here? Follow the link below for online user instructions, sample scenarios and much more.</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>15</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <widget class="QPushButton" name="btn_go_and_learn">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>170</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Go and Learn</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="lbl_online_training">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../deneme.qrc">:/yeniÖnek/fifsot_icons/online_training_2.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_2">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="lbl_upgrade_header">
+              <property name="minimumSize">
+               <size>
+                <width>380</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>UPGRADE</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_upgrade_message">
+              <property name="minimumSize">
+               <size>
+                <width>380</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>340</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Make sure you are always using the latest version. Updates include new features, bug fixes, and performance improvements.</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>15</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QPushButton" name="btn_go_version">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>170</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Check Now</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_8">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="lbl_update">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../deneme.qrc">:/yeniÖnek/fifsot_icons/update_1.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_3">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="lbl_problems_header">
+              <property name="minimumSize">
+               <size>
+                <width>380</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>PROBLEMS</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_problems_message">
+              <property name="minimumSize">
+               <size>
+                <width>380</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>340</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>If you encounter an unexpected error or an undesirable result, please let us know so we can fix the problem and improve the program.</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>15</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <item>
+               <widget class="QPushButton" name="btn_let_us_know">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>170</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Let Us Know</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_11">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="lbl_problems">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>100</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../deneme.qrc">:/yeniÖnek/fifsot_icons/bug_1.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <item>
+       <spacer name="horizontalSpacer_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioButton_page_1">
+        <property name="minimumSize">
+         <size>
+          <width>13</width>
+          <height>13</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>13</width>
+          <height>13</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioButton_page_2">
+        <property name="minimumSize">
+         <size>
+          <width>13</width>
+          <height>13</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>13</width>
+          <height>13</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioButton_page_3">
+        <property name="minimumSize">
+         <size>
+          <width>13</width>
+          <height>13</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>13</width>
+          <height>13</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_10">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="2">
+     <widget class="QWidget" name="widget_scenario_space" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>580</width>
+        <height>370</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#widget_scenario_space{
+	border:1px solid #101524;
+	background-color:#D4D4D4;
+}
+
+#lbl_your_scenarios_header{
+	font:bold;
+}
+
+#lbl_ready_to_use_scenarios_header{
+	font:bold;
+}</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QLabel" name="lbl_your_scenarios_header">
+         <property name="minimumSize">
+          <size>
+           <width>550</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Your Scenarios:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_your_scenarios_text">
+         <property name="minimumSize">
+          <size>
+           <width>550</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Below are the routines you have designed and saved.</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QScrollArea" name="scrollArea_user_scenarios">
+         <property name="minimumSize">
+          <size>
+           <width>560</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QScrollArea QWidget{
+	background-color:#D4D4D4;
+}
+
+QScrollArea{
+	border:none;
+}</string>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>594</width>
+            <height>111</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frame_3">
+         <property name="frameShape">
+          <enum>QFrame::HLine</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_ready_to_use_scenarios_header">
+         <property name="minimumSize">
+          <size>
+           <width>550</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Ready-to-Use Scenarios:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_ready_to_use_scenarios_text">
+         <property name="minimumSize">
+          <size>
+           <width>550</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Below are daily routines that we have left for your convenience.</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QScrollArea" name="scrollArea_system_scenarios">
+         <property name="minimumSize">
+          <size>
+           <width>560</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>111</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QScrollArea QWidget {
+	background-color:#D4D4D4;
+}
+
+QScrollArea{
+	border:none;
+}</string>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>594</width>
+            <height>111</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../deneme.qrc"/>
+ </resources>
+ <connections/>
+</ui>
