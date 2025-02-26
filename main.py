@@ -1,20 +1,20 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication
 from PyQt6.QtGui import QMovie, QPixmap
-from APP.ui_files.Main.main_form import Ui_MainWindow
-from APP.Transactions.package import Controller
-from APP import Commons
-from APP.Customs import CustomMessageBox, TitleBarPopUpMenu
+from ui_files.Main.main_form import Ui_MainWindow
+from Transactions.package import Controller
+import Commons
+from Customs import CustomMessageBox, TitleBarPopUpMenu
 import sys
 import os
 import json
 
-from APP.FThread import TransactionPerformer
+from FThread import TransactionPerformer
 
-from APP.ui_files.About import about
-from APP.ui_files.CreateScenario import create_scenario
+from ui_files.About import about
+from ui_files.CreateScenario import create_scenario
 
-from APP.scenario_widgets import *
-from APP.Initializer import main_initializer
+from scenario_widgets import *
+from Initializer import main_initializer
 
 class MainApp(QMainWindow, Ui_MainWindow):
     def __init__(self):

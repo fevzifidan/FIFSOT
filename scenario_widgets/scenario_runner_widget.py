@@ -31,7 +31,7 @@ class SimpleApp(QWidget):
         self.widget = QWidget()
         self.widget.setObjectName(u"widget")
         self.widget.setGeometry(QRect(40, 60, 230, 90))
-        self.widget.setMinimumSize(QSize(200, 90))
+        self.widget.setMinimumSize(QSize(250, 90))
         self.widget.setMaximumSize(QSize(16777215, 90))
         self.widget.setStyleSheet(u"#widget{\n"
 "	border:2px solid #000000;\n"

@@ -151,7 +151,6 @@ class CreateScenarioApp(QMainWindow, Ui_MainWindow):
     def run(self):
         for obj in self.transactionObjects:
             obj.run()
-        print("Completed!")
 
 
 if __name__ == "__main__":
