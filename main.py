@@ -7,6 +7,8 @@ from Customs import CustomMessageBox, TitleBarPopUpMenu
 import sys
 import os
 import json
+import webbrowser
+from ExternalLinks import ExternalLinks
 
 from FThread import TransactionPerformer
 
@@ -132,8 +134,8 @@ class MainApp(QMainWindow, Ui_MainWindow):
 
     def openTitleBarMenu(self):
         menu = TitleBarPopUpMenu.TitleBarPopUpMenu(self)
-        menu.actionGitHub.triggered.connect(lambda: print("GitHub triggered!"))
-        menu.actionHelp.triggered.connect(lambda: print("Help triggered!"))
+        menu.actionGitHub.triggered.connect(lambda: webbrowser.open(ExternalLinks.GITHUB_PAGE))
+        menu.actionHelp.triggered.connect(lambda: webbrowser.open(ExternalLinks.HELP_PAGE))
         menu.actionAbout.triggered.connect(lambda: self.openWindow(about.AboutApp))
 
         menu.show_menu(button = self.sender(), widget = self.widget_frame)
