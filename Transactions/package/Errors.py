@@ -2,6 +2,10 @@
 pass
 """
 
+from typing import TypeAlias, Literal, get_args
+
+AdminErrorCase:TypeAlias = Literal["copy_symlink", "create_symlink", "terminate_process"]
+
 ERRCODE:dict[str,str] = dict()
 
 ERRCODE = {
@@ -66,12 +70,19 @@ class NotAnAdminError(Exception):
     """Raised when an operation that requires admin authority tried to be
     performed without admin authority"""
 
-    def __init__(self, case):
-        self.message = "Unexplained Error Condition about the requirement of administrator privileges!"
-        if case == "copy_symlink":
-            self.message = "Copying symlinks requires administrator privileges. Check 'symlinks' parameter or run the script as administrator."
+    def __init__(self, case:AdminErrorCase=None):
+        if case == None or case not in get_args(AdminErrorCase):
+            self.message = "Unexplained error condition about the requirement of administrator privileges!"
+        elif case == "copy_symlink":
+            self.message = "Copying symlinks requires administrator privileges."\
+                            "Check 'symlinks' parameter or run the script as administrator."
         elif case == "create_symlink":
-            self.message = "Creating symlinks requires administrator privileges. You can try to run the script as administrator."
+            self.message = "Creating symlinks requires administrator privileges."\
+                            "You can try to run the script as administrator."
+        elif case == "terminate_process":
+            self.message = "Terminating a running process (not recommended) requires administrator privileges."\
+                            "You can try to run the script as administrator."
+        else: pass
         
         super().__init__(self.message)
 
@@ -84,7 +95,8 @@ class CompletedProcessWithMissingItems(Exception):
         super().__init__(self.message)
 
 class ProcessAborted(Exception):
-    """If something crucial occurs, the entire process is aborted with this error in order to avoid further errors."""
+    """If something crucial occurs, the entire process is
+    aborted with this error in order to avoid further errors."""
 
     def __init__(self, *args):
         err_info = args[0]
@@ -177,9 +189,9 @@ class WinErrors:
         32      :   True,
         33      :   True,
         39      :   False,
-        145     :   True,   #   If this error occurs even if the content of the directory is deleted, then pass
+        145     :   True,
         220     :   True,
-        225     :   False,  #   If we encounter a virus infected file, we abort the process due to the risk that other files may also have viruses.
+        225     :   False,
         226     :   True,
         303     :   True,
         313     :   False,
@@ -190,38 +202,11 @@ class WinErrors:
         995     :   False,  #   XXX
         1117    :   False,
         1296    :   True,   #   XXX
-        1314    :   True,   #   A required privilege is not held by the client.
+        1314    :   True,
         1392    :   True,
         1920    :   True,
 
     }
-
-
-
-    """
-    elif errcode == 996:
-            # XXX
-            if file_path != None:
-                if file_path not in self.__files_to_be_retried__.keys():
-                    self.__files_to_be_retried__[file_path] = dest
-                else:
-                    # If the file in question has already been given a chance,
-                    # we won't give it another chance
-                    del self.__files_to_be_retried__[file_path]
-            return True
-        elif errcode == 997:
-            # Wait for the existing I/O operation working on the file to complete its work
-            # At the end of the process, we'll return to this file again
-            if file_path != None:
-                if file_path not in self.__files_to_be_retried__:
-                    self.__files_to_be_retried__[file_path] = dest
-                else:
-                    # If the file in question has already been given a chance,
-                    # we won't give it another chance
-                    del self.__files_to_be_retried__[file_path]
-            return True
-    """
-
 
 
 # END

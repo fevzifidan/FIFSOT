@@ -3,12 +3,15 @@
 
 This module has been programmed to run only on 'Windows' operating system and tested only on 'Windows 10'.
 
-It provides some functions which have high-level and wide-ranging control parameters that allow you to perform operations on files and directories.
+It provides some functions which have high-level and wide-ranging control parameters that allow you to
+perform operations on files and directories.
 
 Some functions and features may require admin privileges.
 
 This module is still under development. It may act inconsistent, make mistakes, and act unexpectedly.
-It is strongly recommended you to make sure before performing irreversible transactions on important files and directories.
+
+It is strongly recommended you to make sure before performing irreversible transactions on important
+files and directories.
 """
 
 __all__ = ["copy", "delete", "count", "rename" ,"create_symlink",
@@ -49,6 +52,9 @@ class Transaction:
         return Detect.detectFileHolder(file_path)
     
     def terminateProcess(self, pid:int, file:str) -> bool:
+        if not Controller.isAdmin():
+            raise Errors.NotAnAdminError(case="terminate_process")
+        
         Controller.validateParam((pid, file), (int, str))
 
         file = Controller.getNormalizedPath(file)

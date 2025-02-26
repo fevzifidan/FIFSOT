@@ -60,19 +60,20 @@ class MainApp(QMainWindow, Ui_MainWindow):
     def getScenarioWidgets(self):
         for scenarioSave in os.listdir(r"scenarios"):
             path = os.path.join("scenarios", scenarioSave)
-            if os.path.isfile(path) and os.path.splitext(path)[1] == ".json":
-                with open(path, "r") as save:
-                    data = json.load(save)
-                    name = data["name"]
-                    transactionNumber = len(data["transactionObjectTypes"])
+            if not os.path.isfile(path) or os.path.splitext(path)[1] != ".json":
+                continue
+            with open(path, "r") as save:
+                data = json.load(save)
+                name = data["name"]
+                transactionNumber = len(data["transactionObjectTypes"])
 
-                    scenarioWidget = getattr(self, name, None)
+                scenarioWidget = getattr(self, name, None)
 
-                    if scenarioWidget is not None:
-                        scenarioWidget.update(name, transactionNumber)
-                    
-                    else:
-                        self.addWidget(name, transactionNumber)
+                if scenarioWidget is not None:
+                    scenarioWidget.update(name, transactionNumber)
+                
+                else:
+                    self.addWidget(name, transactionNumber)
     
     def addWidget(self, name:str, transactionNumber:int):
         runnerW = scenario_runner_widget.SimpleApp(name, transactionNumber)

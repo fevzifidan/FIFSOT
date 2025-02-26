@@ -3,7 +3,6 @@ from os.path import normcase, abspath
 import stat
 from pathlib import Path
 from Transactions.package.Errors import WrongParameterError, UnsuitablePathError
-from Transactions.package import Controller
 from ctypes import windll
 
 def is_special_file(*args) -> bool:
@@ -32,22 +31,22 @@ def isRootedPath(*paths):
     for path in paths:
         p = Path(path)
         if p.drive == "":
-            status = False
+            return False
     
     return status
 
 
 def getNormalizedPath(path):
     if path is None: return path
+
+    if not isRootedPath(path):
+        raise UnsuitablePathError(f"Original path -> {path} -- Normalization -> {str(p)}")
     
     if os.path.islink(path):
         p = Path(path).absolute()
     
     else:
         p = Path(path).resolve()
-
-    if not isRootedPath(path):
-        raise UnsuitablePathError(f"Original path -> {path} -- Normalization -> {str(p)}")
     
     return str(p)
 
@@ -63,7 +62,7 @@ def in_symlink(obj_addr:str) -> bool:
     files and directories, which are under a symlink, from uncontrollably handling from its
     source and all the locations which are linked to the same source.
     """
-    Controller.validateParam(obj_addr, str)
+    validateParam(obj_addr, str)
     obj_addr = getNormalizedPath(obj_addr)
 
     divided_address = obj_addr.split(os.sep)
