@@ -1,7 +1,5 @@
 from PyQt6.QtCore import QThread, pyqtSignal
-from Customs import CustomMessageBox
 from Transactions.package import Errors
-import time
 
 class TransactionPerformer(QThread):
     numberOfTransactions = pyqtSignal(int)
@@ -51,8 +49,6 @@ class TransactionPerformer(QThread):
             self.error.emit(str(e))
         except Exception as e:
             self.warning.emit(str(e))
-            print(e)
-            print(self.kwargs)
         finally:
             self.transactionQueue.pop(0)
 

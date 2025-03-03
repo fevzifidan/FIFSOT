@@ -35,86 +35,74 @@ def walker(src:str, dest:str, params:dict, recursive:bool) -> None:
         linkto = readlink(src)
 
         if path.isfile(src):
-            if not destination_exists and params["symlinks"] == True:
-                Wrapper.try_catch_wrapper(linkto, symlink, dest)
-
-            elif not destination_exists and params["symlinks"] == False:
-                copier(linkto, dest)
+            if not destination_exists:
+                if params["symlinks"]:
+                    Wrapper.try_catch_wrapper(linkto, symlink, dest)
+                else:
+                    copier(linkto, dest)
             
-            elif destination_exists and path.isdir(dest):
-                item_destination = path.join(dest, srcName)
-                walker(src, item_destination, params, recursive)
+            elif path.isdir(dest):
+                walker(src, path.join(dest, srcName), params, recursive)
             
-            elif destination_exists and params["skip_existing_ones"] == True:
+            elif params["skip_existing_ones"]:
                 return
             
-            elif destName != srcName:
-                if params["symlinks"] == False:
+            else:
+                if not params["symlinks"]:
                     copier(linkto, dest)
-
-                elif not path.islink(dest):
-                    Delete.delete(dest)
-                    Wrapper.try_catch_wrapper(linkto, symlink, dest)
-
-                elif (path.islink(dest) and readlink(dest) == linkto) or dest == linkto:
-                    Config.addError(ERRCODE["SymLinkCycle"])
-
+                
                 else:
-                    Symlink.delete_symlink(dest)
-                    Wrapper.try_catch_wrapper(linkto, symlink, dest)
+                    if (path.islink(dest) and readlink(dest) == linkto) or dest == linkto:
+                        Config.addError(ERRCODE["SymLinkCycle"])
+                    
+                    else:
+                        Delete.delete(dest, in_symlink_ok=True)
+                        Wrapper.try_catch_wrapper(linkto, symlink, dest)
 
         else:
-            if params["symlinks"] == False and not recursive:
-                return
-            
-            elif params["symlinks"] == False and not path.exists(dest):
-                Wrapper.try_catch_wrapper(dest, makedirs)
-                src = linkto
-
-            elif params["symlinks"] == True and params["only_files"] == True:
-                # The source directory itself is a symlink;
-                # because only_files is True, we only copy the content.
-                src = linkto
-
+            if not params["symlinks"]:
+                if not recursive:
+                    return
+                elif not path.exists(dest):
+                    Wrapper.try_catch_wrapper(dest, makedirs)
+                    walker(linkto, dest, params, recursive)
+                else:
+                    walker(src, dest, params, recursive)
             else:
-                # params[symlinks] is True...
                 if not destination_exists:
                     Wrapper.try_catch_wrapper(linkto, symlink, dest)
+                
+                elif params["skip_existing_ones"]:
+                    return
                 
                 elif path.islink(dest):
                     if readlink(dest) == linkto or dest == linkto:
                         Config.addError(ERRCODE["SymLinkCycle"])
-
-                    elif srcName == destName and params["skip_existing_ones"] == False:
+                    
+                    else:
                         Symlink.delete_symlink(dest)
                         Wrapper.try_catch_wrapper(linkto, symlink, dest)
-
-                    elif srcName != destName:
-                        Config.addError(ERRCODE["NestedSymLink"])
-
-                elif not path.islink(dest):
-                    if srcName == destName and params["skip_existing_ones"] == False:
-                        Delete.delete(dest)
-                        Wrapper.try_catch_wrapper(linkto, symlink, dest)
-
-                    elif srcName != destName:
-                        dest = path.join(dest, srcName)
-                        walker(src, dest, params, recursive)
                 
-                return
-            
-            walker(src, dest, params, recursive)
+                else:
+                    Delete.delete(dest)
+                    Wrapper.try_catch_wrapper(linkto, symlink, dest)
 
-    elif path.isfile(src) and condition_control(src, params):
-        if not path.exists(dest):
+
+    elif path.isfile(src):
+        if not condition_control(src, params): return
+
+        elif not path.exists(dest):
             copier(src, dest)
+
         elif path.isdir(dest):
             copier(src, path.join(dest, srcName))
-        else:
-            if params["skip_existing_ones"] == False:
-                copier(src, dest)
 
-    elif path.isdir(src):
+        elif params["skip_existing_ones"] == False:
+            copier(src, dest)
+        
+        else: return
+
+    else:
         with scandir(src) as directory:
             for item in directory:
                 src_address = item.path
@@ -123,41 +111,29 @@ def walker(src:str, dest:str, params:dict, recursive:bool) -> None:
                 if Controller.is_special_file(src_address) or not condition_control(src_address, params):
                     continue
 
-                if path.isdir(src_address) and not recursive:
-                    continue
-                
-                elif path.isdir(src_address) and not path.exists(dst_address):
+                if path.isdir(src_address):
+                    if not recursive: continue
 
-                    if not path.islink(src_address) or params["symlinks"] == False:
+                    elif params["only_files"]: continue
 
-                        if params["only_files"] == False:
+                    elif not path.exists(dst_address):
+                        if not path.islink(src_address) or not params["symlinks"]:
                             Wrapper.try_catch_wrapper(dst_address, mkdir)
-
-                        else:
+                        
+                        elif path.islink(src_address) and params["symlinks"]:
                             dst_address = dest
-
-                    elif path.islink(src_address) and params["symlinks"] == True:
-                        dst_address = dest
-
-                elif path.isfile(src_address):
-                    # src_address and dst_address stays the same, do not create directory
-                    pass
-                else:
-                    # dst_address exists, just pass
-                    pass
+                    
+                    else:
+                        pass
 
                 walker(src_address, dst_address, params, recursive)
-
-    else:
-        # In this case, a desired condition_control is not met.
-        pass
 
 
 def copy(src:str, dest:str, only_files:bool = False, merge_content_only:bool = False,
          skip_existing_ones:bool = False, symlinks:bool = False, cond:dict = None,
          copyMetaData:bool = True, recursive:bool = True) -> None:
     
-    if symlinks == True and Controller.isAdmin() == False: raise NotAnAdminError("copy_symlink")
+    if symlinks and not Controller.isAdmin(): raise NotAnAdminError("copy_symlink")
 
     if not isinstance(cond, dict) and cond != None:
         raise Exception(f"The parameter 'cond' must be a dict or None to use defaults!")
@@ -184,7 +160,7 @@ def copy(src:str, dest:str, only_files:bool = False, merge_content_only:bool = F
         if (path.exists(dest) and path.islink(dest) and readlink(dest) == linkto) or dest == linkto:
             raise Exception("A symlink cannot be copied over another symlink with the same source link or over its source!")
     
-    if copyMetaData == False: Config.COPY_FUNCTION = shutil.copy
+    if not copyMetaData: Config.COPY_FUNCTION = shutil.copy
 
     Config.setMaxOperationLimit(src)
 

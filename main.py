@@ -1,21 +1,43 @@
-from PyQt6.QtWidgets import QMainWindow, QApplication
+# Import PyQt6 modules
+from PyQt6.QtWidgets import QMainWindow, QApplication, QRadioButton
 from PyQt6.QtGui import QMovie, QPixmap
-from ui_files.Main.main_form import Ui_MainWindow
-from Transactions.package import Controller
-import Commons
-from Customs import CustomMessageBox, TitleBarPopUpMenu
+
+# Import sys for QApplication
 import sys
+
+# Import ui
+from ui_files.Main.main_form import Ui_MainWindow
+
+# Import Controller module
+from Transactions.package import Controller
+
+# Import common features
+import Commons
+
+# Import customs for custom designed objects
+from Customs import CustomMessageBox, TitleBarPopUpMenu
+
+# Import os for path operations
 import os
+
+# Import json for access saves
 import json
+
+# Import webbrowser to redirect to web pages
 import webbrowser
+
+# Import ExternalLinks to use in redirection
 from ExternalLinks import ExternalLinks
 
+# Import FThread for multithreading
 from FThread import TransactionPerformer
 
 from ui_files.About import about
 from ui_files.CreateScenario import create_scenario
 
 from scenario_widgets import *
+
+# Import initializer to establish signal-slot connections
 from Initializer import main_initializer
 
 class MainApp(QMainWindow, Ui_MainWindow):
@@ -60,8 +82,12 @@ class MainApp(QMainWindow, Ui_MainWindow):
     def getScenarioWidgets(self):
         for scenarioSave in os.listdir(r"scenarios"):
             path = os.path.join("scenarios", scenarioSave)
+
+            # If some other files or directories are added into scenarios directory
+            # do not consider them.
             if not os.path.isfile(path) or os.path.splitext(path)[1] != ".json":
                 continue
+
             with open(path, "r") as save:
                 data = json.load(save)
                 name = data["name"]
@@ -110,18 +136,23 @@ class MainApp(QMainWindow, Ui_MainWindow):
         return Commons.mouseReleaseEvent(self, event)
     
     def setEnabled(self, value:bool):
+        # Handle disabling and enabling the main screen
+
+        # Main parts of the screen...
         self.widget_short_menu.setEnabled(value)
         self.widget_long_menu.setEnabled(value)
         self.stackedWidget_header.setEnabled(value)
         self.widget_scenario_space.setEnabled(value)
-
-        self.radioButton_page_1.setEnabled(value)
-        self.radioButton_page_2.setEnabled(value)
-        self.radioButton_page_3.setEnabled(value)
-        self.radioButton_page_4.setEnabled(value)
-
+        
+        # Page buttons of the screen...
+        for pageButton in self.findChildren(QRadioButton):
+            pageButton.setEnabled(value)
+        
+        # The state of menu button in the title bar should be affected also
         self.btn_menu_window.setEnabled(value)
-
+        
+        # Each time the status of the main screen changes, scenarios should
+        # be updated
         self.getScenarioWidgets()
     
     def setTitleBarText(self):
@@ -168,25 +199,43 @@ class MainApp(QMainWindow, Ui_MainWindow):
     def isWorkingOnTransaction(self, value):
         if value == True:
             self.workingOnTransaction = True
+
+            # Open working on transactions page
             self.stackedWidget_header.setCurrentIndex(3)
+
+            # Start playing loading gif
             self.playLoadingGif()
+
+            # Set the header and message
             self.lbl_status_header.setText("We are working on your transactions...")
             self.lbl_status_message.setText("We will let you know as we complete each transaction.")
+
+            # Set status message and terminate button visible
             self.lbl_status_message_2.setVisible(True)
             self.btn_terminate_transactions.setVisible(True)
         
         else:
             self.workingOnTransaction = False
-            if self.movie:
-                self.movie.stop()
-                self.lbl_status_icon.setMovie(None)
-                self.movie = None
-                self.lbl_status_icon.setPixmap(QPixmap(":/yeniÖnek/fifsot_icons/completed_blue.png"))
+            if not self.movie:
+                return
+            
+            # Stop loading gif
+            self.movie.stop()
 
-                self.lbl_status_header.setText("Everything is Done!")
-                self.lbl_status_message.setText("You don\'t have any transactions that we are currently working on.")
-                self.lbl_status_message_2.setVisible(False)
-                self.btn_terminate_transactions.setVisible(False)
+            # Clear
+            self.lbl_status_icon.setMovie(None)
+            self.movie = None
+
+            # Set back to normal view
+            self.lbl_status_icon.setPixmap(QPixmap(":/yeniÖnek/fifsot_icons/completed_blue.png"))
+            
+            # Set the header and message
+            self.lbl_status_header.setText("Everything is Done!")
+            self.lbl_status_message.setText("You don\'t have any transactions that we are currently working on.")
+
+            # Set status message and terminate button invisible
+            self.lbl_status_message_2.setVisible(False)
+            self.btn_terminate_transactions.setVisible(False)
 
     def lastOutput(self, value):
         if self.functionStack:

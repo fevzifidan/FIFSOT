@@ -7,10 +7,7 @@ def remove_empty_directories(obj_addr:str, in_symlink_ok:bool=False, recursive:b
     
     with os.scandir(obj_addr) as directory:
         for item in directory:
-            if Controller.is_special_file(item.path):
-                Config.addError(ERRCODE["SpecialFile"], item.path)
-                continue
-            elif os.path.isdir(item.path):
+            if os.path.isdir(item.path):
                 if not any(os.scandir(item.path)):
                     Wrapper.try_catch_wrapper(item.path, os.rmdir)
                 elif recursive:
@@ -29,12 +26,17 @@ def deleter(obj_addr:str, params:dict, only_content:bool, recursive:bool) -> Non
         return
 
     elif os.path.islink(obj_addr) and condition_control(obj_addr, params):
+        if obj_addr != Config.DIRECTORY_TO_LEAVE_ADDRESS and params["only_files"] == True:
+            return
+        
         target = Symlink.delete_symlink(obj_addr, follow_symlinks=params["follow_symlinks"])
+        
         if target != None:
             deleter(target, params, only_content=False, recursive=recursive)
         return
 
     elif os.path.isdir(obj_addr):
+
         if recursive == False and obj_addr != Config.DIRECTORY_TO_LEAVE_ADDRESS:
             return
         
@@ -44,7 +46,7 @@ def deleter(obj_addr:str, params:dict, only_content:bool, recursive:bool) -> Non
                     deleter(item.path, params, only_content = False, recursive=recursive)
         
         # If the content is completely deleted, consider whether the directory itself should be deleted as well.
-        if not any(os.scandir(obj_addr)) and params["only_files"] == False:
+        if not any(os.scandir(obj_addr)):
             if Config.DIRECTORY_TO_LEAVE_ADDRESS == obj_addr and only_content == False:
                 Wrapper.try_catch_wrapper(obj_addr, os.rmdir)
             elif Config.DIRECTORY_TO_LEAVE_ADDRESS != obj_addr and condition_control(obj_addr, params):

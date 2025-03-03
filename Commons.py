@@ -1,7 +1,6 @@
 from PyQt6.QtCore import Qt
 from Customs.CustomFileDialog import CustomFileDialog
 from Customs import CustomMessageBox
-from FThread import TransactionPerformer
 
 
 def mousePressEvent(obj, event):

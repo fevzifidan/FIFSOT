@@ -54,7 +54,7 @@ def rename(address:str, prefix:str = "", suffix:str = "", only_files:bool = True
         new_name = path.join(path.split(key)[0], prefix + str(i) + suffix + path.splitext(path.split(key)[1])[1])
 
         if new_name in order_dict.keys() and not Controller.samefile(key, new_name):
-            # By __samefile control, we avoid the following case: 0-1-2 | 2-1-0 >> 1 is not considered as a conflict
+            # By samefile control, we avoid the following case: 0-1-2 | 2-1-0 >> 1 is not considered as a conflict
             overlap_dict[key] = new_name
             continue
         
