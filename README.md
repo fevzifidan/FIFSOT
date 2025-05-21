@@ -1,6 +1,9 @@
 # $${\color{#40E0D0}FIFSOT}$$
 $${\color{#40E0D0}FIFSOT}$$ is a <b>scenario-based file system automation</b> that allows users to perform daily multi-step tasks related to their files with one-click routines.
 
+## Screenshots
+<img src=https://github.com/user-attachments/assets/cab3d09b-76b6-46e3-82ab-194662fc481f alt="drawing" width="350"/> <img src=https://github.com/user-attachments/assets/02650477-58c8-4ee1-93be-1abf1ad373c5 alt="drawing" width="350"/>
+
 ## Primary Feature: Creating and Executing Scenarios:
 Combine any number and combination of operations such as Archive, Copy, Rename, and Delete, and run the scenario you created with a single click whenever you need.
 
@@ -50,9 +53,6 @@ The project has been developed in Python and mainly uses PyQt6. For some feature
 
 ## Development Purpose and Use
 This project was developed for educational purposes only and does not have any commercial purpose.
-
-## Screenshots
-<img src=https://github.com/user-attachments/assets/cab3d09b-76b6-46e3-82ab-194662fc481f alt="drawing" width="350"/> <img src=https://github.com/user-attachments/assets/02650477-58c8-4ee1-93be-1abf1ad373c5 alt="drawing" width="350"/>
 
 ## Disclaimer
 This project has not yet been fully tested for every condition and situation. Any unexpected situation may have an unexpected impact on your file system and files.
