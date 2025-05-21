@@ -12,7 +12,9 @@ from os import path
 class WhoIsApp(QMainWindow):
     def __init__(self, parent=None, transactionPerformer:TransactionPerformer=None):
         super().__init__()
-        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\whoIs_ui.ui", self)
+        fileDir = path.dirname(path.abspath(__file__))
+        ui_file = path.join(fileDir, "whoIs_ui.ui")
+        self.ui = uic.load_ui.loadUi(ui_file, self)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent

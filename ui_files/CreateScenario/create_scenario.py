@@ -5,6 +5,7 @@ from PyQt6 import uic
 import Commons
 from Customs.AddTransactionPopUpMenu import AddTransactionPopUpMenu
 import sys
+from os import path
 from FThread import TransactionPerformer
 
 from scenario_widgets import *
@@ -14,7 +15,9 @@ import json
 class CreateScenarioApp(QMainWindow):
     def __init__(self, parent=None, transactionPerformer:TransactionPerformer=None, save:dict|None = None):
         super().__init__()
-        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\create_scenario_ui.ui", self)
+        fileDir = path.dirname(path.abspath(__file__))
+        ui_file = path.join(fileDir, "create_scenario_ui.ui")
+        self.ui = uic.load_ui.loadUi(ui_file, self)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent
