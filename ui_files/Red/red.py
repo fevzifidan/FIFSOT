@@ -1,15 +1,16 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
-from ui_files.Red.red_form import Ui_MainWindow
+from PyQt6.QtCore import Qt
+from PyQt6 import uic
 from Transactions.Directory_Transactions import Transaction
-from Customs import CustomMessageBox
 import Commons
 import sys
 from FThread import TransactionPerformer
 
-class RedApp(QMainWindow, Ui_MainWindow):
+class RedApp(QMainWindow):
     def __init__(self, parent=None, transactionPerformer:TransactionPerformer=None):
         super().__init__()
-        self.setupUi(self)
+        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\red_ui.ui", self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent
         self.transactionPerformer = transactionPerformer

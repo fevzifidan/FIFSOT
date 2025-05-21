@@ -21,14 +21,6 @@ class SimpleApp(QWidget, DynamicWidget):
         ui_file = path.join(path.dirname(__file__), "widgets", "red_widget.ui")
         self.ui = uic.load_ui.loadUi(ui_file, self)
 
-        # Get main widget
-        self.widget = self.ui.findChild(QWidget, "widget")
-
-        # Get objects in main widget
-        self.lineEdit_address = self.ui.findChild(QLineEdit, "lineEdit_address")
-        self.checkBox_deleteObjectsInSymlinks = self.ui.findChild(QCheckBox, "checkBox_deleteObjectsInSymlinks")
-        self.checkBox_recursive = self.ui.findChild(QCheckBox, "checkBox_recursive")
-
         # After the completion of widget, let the parent make the last arrangements
         super().prepare(transactionType=self.transactionType, recordDict=recordDict)
     

@@ -1,16 +1,17 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
-from ui_files.CreateSymlink.create_symlink_form import Ui_MainWindow
+from PyQt6 import uic
+from PyQt6.QtCore import Qt
 from Transactions.Directory_Transactions import Transaction
-from Customs import CustomMessageBox
 import Commons
 import sys
 from os import path
 from FThread import TransactionPerformer
 
-class SymlinkApp(QMainWindow, Ui_MainWindow):
+class SymlinkApp(QMainWindow):
     def __init__(self, parent=None, transactionPerformer:TransactionPerformer=None):
         super().__init__()
-        self.setupUi(self)
+        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\create_symlink_ui.ui", self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent
         self.transactionPerformer = transactionPerformer

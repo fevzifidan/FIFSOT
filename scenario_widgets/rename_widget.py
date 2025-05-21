@@ -21,20 +21,6 @@ class SimpleApp(QWidget, DynamicWidget):
         ui_file = path.join(path.dirname(__file__), "widgets", "rename_widget.ui")
         self.ui = uic.load_ui.loadUi(ui_file, self)
 
-        # Get main widget
-        self.widget = self.ui.findChild(QWidget, "widget")
-
-        # Get objects in main widget
-        self.lineEdit_address = self.ui.findChild(QLineEdit, "lineEdit_address")
-        self.lineEdit_prefix = self.ui.findChild(QLineEdit, "lineEdit_prefix")
-        self.lineEdit_suffix = self.ui.findChild(QLineEdit, "lineEdit_suffix")
-        self.comboBox_case = self.ui.findChild(QComboBox, "comboBox_case")
-        self.spinBox_start = self.ui.findChild(QSpinBox, "spinBox_start")
-        self.spinBox_zfill = self.ui.findChild(QSpinBox, "spinBox_zfill")
-
-        self.checkBox_onlyFiles = self.ui.findChild(QCheckBox, "checkBox_onlyFiles")
-        self.checkBox_reversed = self.ui.findChild(QCheckBox, "checkBox_reversed")
-
         # After the completion of widget, let the parent make the last arrangements
         super().prepare(transactionType=self.transactionType, recordDict=recordDict)
     

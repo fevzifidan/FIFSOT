@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>784</width>
-    <height>265</height>
+    <height>233</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -181,7 +181,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLabel" name="lbl_rootDirectory">
+           <widget class="QLabel" name="lbl_selectFolder">
             <property name="minimumSize">
              <size>
               <width>230</width>
@@ -195,7 +195,7 @@
              </size>
             </property>
             <property name="text">
-             <string>Root Directory:</string>
+             <string>Select Folder:</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -203,7 +203,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_rootDirectory">
+           <widget class="QLineEdit" name="lineEdit_selectFolder">
             <property name="minimumSize">
              <size>
               <width>394</width>
@@ -226,83 +226,6 @@
           </item>
           <item>
            <widget class="QPushButton" name="btn_openDialog_rootDirectory">
-            <property name="minimumSize">
-             <size>
-              <width>20</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>20</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../deneme.qrc">
-              <normaloff>:/yeniÖnek/fifsot_icons/open_file_dialog.png</normaloff>:/yeniÖnek/fifsot_icons/open_file_dialog.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>20</width>
-              <height>20</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QLabel" name="lbl_baseDirectory">
-            <property name="minimumSize">
-             <size>
-              <width>230</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>230</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Base Directory:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_baseDirectory">
-            <property name="minimumSize">
-             <size>
-              <width>394</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="placeholderText">
-             <string>Select or drag and drop</string>
-            </property>
-            <property name="clearButtonEnabled">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="btn_openDialog_baseDirectory">
             <property name="minimumSize">
              <size>
               <width>20</width>

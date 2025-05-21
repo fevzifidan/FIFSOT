@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
-from ui_files.WhoIs.whoIs_form import Ui_MainWindow
+from PyQt6.QtCore import Qt
+from PyQt6 import uic
 from Customs import CustomMessageBox
 from Transactions.Directory_Transactions import Transaction
 from FThread import TransactionPerformer
@@ -7,12 +8,12 @@ from PyQt6.QtGui import QMovie
 import Commons
 import sys
 from os import path
-from ui_files import resources_rc
 
-class WhoIsApp(QMainWindow, Ui_MainWindow):
+class WhoIsApp(QMainWindow):
     def __init__(self, parent=None, transactionPerformer:TransactionPerformer=None):
         super().__init__()
-        self.setupUi(self)
+        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\whoIs_ui.ui", self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent
         self.transactionPerformer = transactionPerformer

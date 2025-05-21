@@ -1,16 +1,17 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
-from ui_files.Copy.copy_form import Ui_MainWindow
+from PyQt6 import uic
+from PyQt6.QtCore import Qt
 import Commons
 from Transactions.Directory_Transactions import Transaction
-from Customs import CustomMessageBox
 import sys
 from os import path
 from FThread import TransactionPerformer
 
-class CopyApp(QMainWindow, Ui_MainWindow):
-    def __init__(self, parent=None, transactionPerformer:TransactionPerformer=None):
+class CopyApp(QMainWindow):
+    def __init__(self, parent=None, transactionPerformer:TransactionPerformer = None):
         super().__init__()
-        self.setupUi(self)
+        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\copy_ui.ui", self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent
         self.transactionPerformer = transactionPerformer
@@ -86,12 +87,11 @@ class CopyApp(QMainWindow, Ui_MainWindow):
             # set conditions
             transaction.setCond(extension=extension, name_startswith=nameStartswith, contains=nameContains,
                                 excl_startswith=excludeNameStartswith, excl_contains=excludeNameContains,
-                                case_insensitive=caseInsensitive)
+                                case_insensitive=caseInsensitive, filterOnlyForFiles=onlyFiles)
             
             # call copy function
             self.transactionPerformer.addToTransactionQueue(transaction.copy,
                                                             src=source, dest=destination,
-                                                            only_files=onlyFiles,
                                                             merge_content_only=mergeContentOnly,
                                                             skip_existing_ones=skipExistingOnes,
                                                             symlinks=symlinks, copyMetaData=copyMetaData,

@@ -1,15 +1,16 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
-from ui_files.Delete.delete_form import Ui_MainWindow
+from PyQt6 import uic
+from PyQt6.QtCore import Qt
 from Transactions.Directory_Transactions import Transaction
-from Customs import CustomMessageBox
 import Commons
 import sys
 from FThread import TransactionPerformer
 
-class DeleteApp(QMainWindow, Ui_MainWindow):
+class DeleteApp(QMainWindow):
     def __init__(self, parent=None, transactionPerformer:TransactionPerformer=None):
         super().__init__()
-        self.setupUi(self)
+        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\delete_ui.ui", self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent
         self.transactionPerformer = transactionPerformer
@@ -78,11 +79,11 @@ class DeleteApp(QMainWindow, Ui_MainWindow):
             # set conditions
             transaction.setCond(extension=extension, name_startswith=nameStartswith, contains=nameContains,
                                 excl_startswith=excludeNameStartswith, excl_contains=excludeNameContains,
-                                case_insensitive=caseInsensitive)
+                                case_insensitive=caseInsensitive, filterOnlyForFiles=True)
             
             # call function for delete operation
             self.transactionPerformer.addToTransactionQueue(transaction.delete,
-                                                            obj_addr=address, only_files=onlyFiles,
+                                                            obj_addr=address,
                                                             in_symlink_ok=inSymlink, follow_symlinks=followSymlinks,
                                                             only_content=onlyContent, recursive=recursive,
                                                             forcePermissions=forcePermissions)

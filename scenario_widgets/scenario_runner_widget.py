@@ -32,15 +32,6 @@ class SimpleApp(QWidget):
         ui_file = path.join(path.dirname(__file__), "widgets", "scenario_widget.ui")
         self.ui = uic.load_ui.loadUi(ui_file, self)
 
-        # Get main widget
-        self.widget = self.ui.findChild(QWidget, "widget")
-
-        # Get objects in main widget
-        self.btn_run = self.ui.findChild(QPushButton, "btn_run")
-        self.btn_menu = self.ui.findChild(QPushButton, "btn_menu")
-        self.lbl_header = self.ui.findChild(QLabel, "lbl_header")
-        self.lbl_operation_number = self.ui.findChild(QLabel, "lbl_operation_number")
-
         # Set texts on objects
         self.lbl_header.setText(self.name)
         self.lbl_operation_number.setText(f"{self.numberOfTransactions} transactions")

@@ -1,15 +1,16 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
-from ui_files.Count.count_form import Ui_MainWindow
+from PyQt6 import uic
+from PyQt6.QtCore import Qt
 import Commons
 from Transactions.Directory_Transactions import Transaction
-from Customs import CustomMessageBox
 import sys
 from FThread import TransactionPerformer
 
-class CountApp(QMainWindow, Ui_MainWindow):
+class CountApp(QMainWindow):
     def __init__(self, parent=None, transactionPerformer:TransactionPerformer=None):
         super().__init__()
-        self.setupUi(self)
+        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\count_ui.ui", self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent
         self.transactionPerformer = transactionPerformer
@@ -74,7 +75,7 @@ class CountApp(QMainWindow, Ui_MainWindow):
             # set conditions
             transaction.setCond(extension=extension, name_startswith=nameStartswith, contains=nameContains,
                                 excl_startswith=excludeNameStartswith, excl_contains=excludeNameContains,
-                                case_insensitive=caseInsensitive)
+                                case_insensitive=caseInsensitive, filterOnlyForFiles=onlyFiles)
             
             # call count function
             self.transactionPerformer.addToTransactionQueue(transaction.count,

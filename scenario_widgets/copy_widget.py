@@ -19,29 +19,6 @@ class SimpleApp(QWidget, DynamicWidget):
         ui_file = path.join(path.dirname(__file__), "widgets", "copy_widget.ui")
         self.ui = uic.load_ui.loadUi(ui_file, self)
 
-        # Get main widget
-        self.widget = self.ui.findChild(QWidget, "widget")
-
-        # Get objects in main widget
-        self.lineEdit_source = self.ui.findChild(QLineEdit, "lineEdit_source")
-        self.lineEdit_destination = self.ui.findChild(QLineEdit, "lineEdit_destination")
-        self.lineEdit_name = self.ui.findChild(QLineEdit, "lineEdit_name")
-
-        self.checkBox_onlyFiles = self.ui.findChild(QCheckBox, "checkBox_onlyFiles")
-        self.checkBox_mergeContentOnly = self.ui.findChild(QCheckBox, "checkBox_mergeContentOnly")
-        self.checkBox_skipExistingOnes = self.ui.findChild(QCheckBox, "checkBox_skipExistingOnes")
-        self.checkBox_symlinks = self.ui.findChild(QCheckBox, "checkBox_symlinks")
-        self.checkBox_copyMetaData = self.ui.findChild(QCheckBox, "checkBox_copyMetaData")
-        self.checkBox_recursive = self.ui.findChild(QCheckBox, "checkBox_recursive")
-
-        self.lineEdit_extension = self.ui.findChild(QLineEdit, "lineEdit_extension")
-        self.lineEdit_nameStartswith = self.ui.findChild(QLineEdit, "lineEdit_nameStartswith")
-        self.lineEdit_nameContains = self.ui.findChild(QLineEdit, "lineEdit_nameContains")
-        self.lineEdit_excludeNameStartswith = self.ui.findChild(QLineEdit, "lineEdit_excludeNameStartswith")
-        self.lineEdit_excludeNameContains = self.ui.findChild(QLineEdit, "lineEdit_excludeNameContains")
-        self.checkBox_caseInsensitive = self.ui.findChild(QCheckBox, "checkBox_caseInsensitive")
-
-
         # After the completion of widget, let the parent make the last arrangements
         super().prepare(transactionType=self.transactionType, recordDict=recordDict)
     

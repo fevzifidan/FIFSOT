@@ -1,16 +1,17 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
-from ui_files.CreateArchive.create_archive_form import Ui_MainWindow
+from PyQt6 import uic
+from PyQt6.QtCore import Qt
 from Transactions.Directory_Transactions import Transaction
-from Customs import CustomMessageBox
 import Commons
 import sys
 from os import path
 from FThread import TransactionPerformer
 
-class ArchiveApp(QMainWindow, Ui_MainWindow):
+class ArchiveApp(QMainWindow):
     def __init__(self, parent=None, transactionPerformer:TransactionPerformer=None):
         super().__init__()
-        self.setupUi(self)
+        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\create_archive_ui.ui", self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent
         self.transactionPerformer = transactionPerformer
@@ -18,8 +19,7 @@ class ArchiveApp(QMainWindow, Ui_MainWindow):
 
         self.matchDict:dict[QPushButton, QLineEdit] = {
             self.btn_openDialog_archiveAddress      :       self.lineEdit_archiveAddress,
-            self.btn_openDialog_rootDirectory       :       self.lineEdit_rootDirectory,
-            self.btn_openDialog_baseDirectory       :       self.lineEdit_baseDirectory
+            self.btn_openDialog_rootDirectory       :       self.lineEdit_selectFolder
         }
 
         for btn, _ in self.matchDict.items():
@@ -28,7 +28,7 @@ class ArchiveApp(QMainWindow, Ui_MainWindow):
         # Store compulsory input(s)
         self.compulsoryInputs:list[QLineEdit] = [
             self.lineEdit_archiveAddress, self.lineEdit_archiveName,
-            self.lineEdit_rootDirectory
+            self.lineEdit_selectFolder
         ]
 
         self.btn_create.clicked.connect(self.run)
@@ -61,19 +61,11 @@ class ArchiveApp(QMainWindow, Ui_MainWindow):
             # params
             archiveAddress = self.lineEdit_archiveAddress.text()
             archiveName = self.lineEdit_archiveName.text()
-            rootDirectory = self.lineEdit_rootDirectory.text()
-            baseDirectory = self.lineEdit_baseDirectory.text()
+            rootDirectory, baseDirectory = path.split(self.lineEdit_selectFolder.text())
             archiveFormat = self.comboBox_format.currentText()
 
             # create the destination path
             archiveAddress = path.join(archiveAddress, archiveName)
-
-            # arrange base directory if specified
-            if baseDirectory:
-                # When it is selected via the dialog, the path of baseDirectory
-                # that is common with rootDirectory should be deleted.
-                commonPath = path.commonpath([rootDirectory, baseDirectory])
-                baseDirectory = path.relpath(baseDirectory, commonPath)
 
             # create a transaction object
             transaction = Transaction()

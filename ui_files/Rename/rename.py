@@ -1,15 +1,16 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
-from ui_files.Rename.rename_form import Ui_MainWindow
-from Customs import CustomMessageBox
+from PyQt6.QtCore import Qt
+from PyQt6 import uic
 from Transactions.Directory_Transactions import Transaction
 from FThread import TransactionPerformer
 import Commons
 import sys
 
-class RenameApp(QMainWindow, Ui_MainWindow):
+class RenameApp(QMainWindow):
     def __init__(self, parent=None, transactionPerformer:TransactionPerformer = None):
         super().__init__()
-        self.setupUi(self)
+        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\rename_ui.ui", self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent
         self.transactionPerformer = transactionPerformer

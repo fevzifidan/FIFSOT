@@ -1,12 +1,14 @@
 from PyQt6.QtWidgets import QMainWindow, QApplication
-from ui_files.About.about_form import Ui_MainWindow
+from PyQt6 import uic
+from PyQt6.QtCore import Qt
 import Commons
 import sys
 
-class AboutApp(QMainWindow, Ui_MainWindow):
+class AboutApp(QMainWindow):
     def __init__(self, parent=None, transactionPerformer=None):
         super().__init__()
-        self.setupUi(self)
+        self.ui = uic.load_ui.loadUi(r"C:\Users\fevzi\Downloads\pages\about_ui.ui", self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
 
         self._parent = parent
         self.btn_close_window.clicked.connect(lambda: self.close())

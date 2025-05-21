@@ -20,26 +20,6 @@ class SimpleApp(QWidget, DynamicWidget):
         ui_file = path.join(path.dirname(__file__), "widgets", "delete_widget.ui")
         self.ui = uic.load_ui.loadUi(ui_file, self)
 
-        # Get main widget
-        self.widget = self.ui.findChild(QWidget, "widget")
-
-        # Get objects in main widget
-        self.lineEdit_address = self.ui.findChild(QLineEdit, "lineEdit_archiveAddress")
-
-        self.checkBox_onlyFiles = self.ui.findChild(QCheckBox, "checkBox_onlyFiles")
-        self.checkBox_deleteObjectsInSymlinks = self.ui.findChild(QCheckBox, "checkBox_deleteObjectsInSymlinks")
-        self.checkBox_followSymlinks = self.ui.findChild(QCheckBox, "checkBox_followSymlinks")
-        self.checkBox_onlyContent = self.ui.findChild(QCheckBox, "checkBox_onlyContent")
-        self.checkBox_recursive = self.ui.findChild(QCheckBox, "checkBox_recursive")
-        self.checkBox_forcePermission = self.ui.findChild(QCheckBox, "checkBox_forcePermission")
-
-        self.lineEdit_extension = self.ui.findChild(QLineEdit, "lineEdit_extension")
-        self.lineEdit_nameStartswith = self.ui.findChild(QLineEdit, "lineEdit_nameStartswith")
-        self.lineEdit_nameContains = self.ui.findChild(QLineEdit, "lineEdit_nameContains")
-        self.lineEdit_excludeNameStartswith = self.ui.findChild(QLineEdit, "lineEdit_excludeNameStartswith")
-        self.lineEdit_excludeNameContains = self.ui.findChild(QLineEdit, "lineEdit_excludeNameContains")
-        self.checkBox_caseInsensitive = self.ui.findChild(QCheckBox, "checkBox_caseInsensitive")
-
         # After the completion of widget, let the parent make the last arrangements
         super().prepare(transactionType=self.transactionType, recordDict=recordDict)
     
