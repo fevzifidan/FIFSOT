@@ -14,8 +14,7 @@ It is strongly recommended you to make sure before performing irreversible trans
 files and directories.
 """
 
-__all__ = ["copy", "delete", "count", "rename" ,"create_symlink",
-           "delete_symlink", "in_symlink", "remove_empty_directories"]
+__all__ = ["Transaction"]
 
 try:
     import os
@@ -65,25 +64,27 @@ class Transaction:
         return Detect.terminateProcess(pid)
 
     def setCond(self, extension:None|str = None, name_startswith:None|str = None, contains:None|str = None,
-            excl_startswith:None|str = None, excl_contains:None|str = None, case_insensitive:bool = False) -> None:
+            excl_startswith:None|str = None, excl_contains:None|str = None, case_insensitive:bool = False,
+            filterOnlyForFiles:bool = False) -> None:
     
         Config.COND = {"extension":extension, "name_startswith":name_startswith, "contains":contains,
-                       "excl_startswith":excl_startswith, "excl_contains":excl_contains, "case_insensitive":case_insensitive}
+                       "excl_startswith":excl_startswith, "excl_contains":excl_contains,
+                       "case_insensitive":case_insensitive, "filterOnlyForFiles":filterOnlyForFiles}
 
-    def copy(self, src:str, dest:str, only_files:bool = False, merge_content_only:bool = False,
+    def copy(self, src:str, dest:str, merge_content_only:bool = False,
              skip_existing_ones:bool = False, symlinks:bool = False, cond:dict = None,
              copyMetaData:bool = True, recursive:bool = True) -> None:
         
-        Controller.validateParam((src, dest, only_files, merge_content_only, skip_existing_ones, symlinks, copyMetaData),
+        Controller.validateParam((src, dest, merge_content_only, skip_existing_ones, symlinks, copyMetaData),
                                  (str, str, bool, bool, bool, bool, bool))
         
         src = Controller.getNormalizedPath(src)
         dest = Controller.getNormalizedPath(dest)
         
-        Copy.copy(src, dest, only_files, merge_content_only, skip_existing_ones,
+        Copy.copy(src, dest, merge_content_only, skip_existing_ones,
                   symlinks, cond, copyMetaData, recursive)
     
-    def delete(self, obj_addr:str, only_files:bool = False, in_symlink_ok:bool = False,
+    def delete(self, obj_addr:str, in_symlink_ok:bool = False,
                follow_symlinks:bool = False, only_content:bool = True, recursive:bool = False,
                cond:dict = None, forcePermissions:bool = True) -> None:
         
@@ -110,7 +111,7 @@ class Transaction:
 
         Config.FORCE_PERMISSIONS = forcePermissions
 
-        Delete.delete(obj_addr, only_files, in_symlink_ok, follow_symlinks, only_content, recursive, cond)
+        Delete.delete(obj_addr, in_symlink_ok, follow_symlinks, only_content, recursive, cond)
     
     def delete_symlink(self, obj_addr:str, recurse:bool=True, include:str=None,
                        exclude:str=None, force:bool=False, in_symlink_ok:bool = False,
@@ -189,7 +190,7 @@ class Transaction:
 
         base_name = Controller.getNormalizedPath(base_name)
         root_dir = Controller.getNormalizedPath(root_dir)
-        base_dir = Controller.getNormalizedPath(base_dir)
+        # base_dir = Controller.getNormalizedPath(base_dir)
 
 
         if not os.path.splitext(base_name)[1] == "":

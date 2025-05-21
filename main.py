@@ -1,27 +1,17 @@
-# Import PyQt6 modules
 from PyQt6.QtWidgets import QMainWindow, QApplication, QRadioButton
 from PyQt6.QtGui import QMovie, QPixmap
-
-# Import sys for QApplication
 import sys
-
-# Import ui
-from ui_files.Main.main_form import Ui_MainWindow
-
-# Import Controller module
-from Transactions.package import Controller
-
-# Import common features
-import Commons
-
-# Import customs for custom designed objects
-from Customs import CustomMessageBox, TitleBarPopUpMenu
-
-# Import os for path operations
 import os
-
-# Import json for access saves
 import json
+
+# Import ui and other modules
+from ui_files.Main.main_form import Ui_MainWindow
+from Transactions.package import Controller
+import Commons
+from Customs import CustomMessageBox, TitleBarPopUpMenu
+from ui_files.About import about
+from ui_files.CreateScenario import create_scenario
+from scenario_widgets import *
 
 # Import webbrowser to redirect to web pages
 import webbrowser
@@ -31,11 +21,6 @@ from ExternalLinks import ExternalLinks
 
 # Import FThread for multithreading
 from FThread import TransactionPerformer
-
-from ui_files.About import about
-from ui_files.CreateScenario import create_scenario
-
-from scenario_widgets import *
 
 # Import initializer to establish signal-slot connections
 from Initializer import main_initializer
@@ -66,6 +51,8 @@ class MainApp(QMainWindow, Ui_MainWindow):
         self.movie = None
 
         self.functionStack:list = list()
+
+        self.scenarioErrorStack = list()
 
         self.getScenarioWidgets()
     
@@ -237,6 +224,16 @@ class MainApp(QMainWindow, Ui_MainWindow):
             self.lbl_status_message_2.setVisible(False)
             self.btn_terminate_transactions.setVisible(False)
 
+            if self.scenarioErrorStack:
+                text = ""
+                for info in self.scenarioErrorStack:
+                    text += f"{info}\n\n"
+                CustomMessageBox.Warning(self, "Scenario Results", text.strip()).exec()
+                self.scenarioErrorStack.clear()
+            
+            else:
+                CustomMessageBox.Successful(self, False).exec()
+
     def lastOutput(self, value):
         if self.functionStack:
             func = self.functionStack.pop(0)
@@ -254,11 +251,17 @@ class MainApp(QMainWindow, Ui_MainWindow):
         if self.functionStack:
             func = self.functionStack.pop(0)
             CustomMessageBox.Warning(self, "FIFSOT", f"{func}:\n\n{msg}").exec()
+        
+        else:
+            self.scenarioErrorStack.append(msg)
 
     def printError(self, msg:str):
         if self.functionStack:
             func = self.functionStack.pop(0)
             CustomMessageBox.Error(self, "FIFSOT", f"{func}:\n\n{msg}").exec()
+        
+        else:
+            self.scenarioErrorStack.append(msg)
 
 
 if __name__ == "__main__":

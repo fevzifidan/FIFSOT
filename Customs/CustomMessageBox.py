@@ -1,10 +1,11 @@
 from PyQt6.QtWidgets import QMessageBox
-from PyQt6.QtCore import *
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtGui import QPixmap, QIcon
 
 def _CreateInformativeMessageBox(obj, windowTitle:str, text:str, icon):
     msgBox = QMessageBox()
     msgBox.setWindowTitle(windowTitle)
+    msgBox.setWindowIcon(QIcon(":/yeniÖnek/fifsot_icons/F_Icon_1.png"))
     msgBox.setText(text)
     msgBox.setIcon(icon)
     msgBox.addButton(QMessageBox.StandardButton.Ok)
@@ -13,6 +14,7 @@ def _CreateInformativeMessageBox(obj, windowTitle:str, text:str, icon):
 def _CreateResultNotifierMessageBox(obj, windowTitle:str, text:str, iconPixmap:QPixmap):
     msgBox = QMessageBox()
     msgBox.setWindowTitle(windowTitle)
+    msgBox.setWindowIcon(QIcon(":/yeniÖnek/fifsot_icons/F_Icon_1.png"))
     msgBox.setText(text)
     iconPixmap = iconPixmap.scaled(QSize(48,48), Qt.AspectRatioMode.IgnoreAspectRatio)
     msgBox.setIconPixmap(iconPixmap)
@@ -32,34 +34,24 @@ def Error(obj, windowTitle:str, text:str):
     icon = QMessageBox.Icon.Critical
     return _CreateInformativeMessageBox(obj, windowTitle, text, icon)
 
-def Successful(obj, reload:bool|None = True):
+def Successful(obj, reload:bool|None = None):
+    # Reload is not used anymore and will be deprecated.
     title = "Successul"
     text = "The process has been completed successfully."
-    iconPixmap = QPixmap(":/yeniÖnek/fifsot_icons/successful.png")
-
-    try:
-        if reload == True: obj.reload()
-        elif reload == False: obj.LoadDashboard()
-        else: pass
-    except:
-        pass
+    iconPixmap = QPixmap(":/yeniÖnek/fifsot_icons/completed_green_1.png")
     
     return _CreateResultNotifierMessageBox(obj, title, text, iconPixmap)
 
 def NoResultsFound(obj):
     title = "No Results Found"
     text = "No results found."
-    iconPixmap = QPixmap(":/yeniÖnek/fifsot_icons/successful.png")
+    iconPixmap = QPixmap(":/yeniÖnek/fifsot_icons/no_results_found.png")
     return _CreateResultNotifierMessageBox(obj, title, text, iconPixmap)
-
-def NoActionForRequests(obj):
-    msg = "In order to interact with pending requests to accept or reject "\
-        "them, use the corresponding <span style='color: #BE8AF9'>pending requests</span> module."
-    return Information(obj, "No Action for Requests", msg)
 
 def Question(obj, windowTitle:str, text:str):
     msgBox = QMessageBox()
     msgBox.setWindowTitle(windowTitle)
+    msgBox.setWindowIcon(QIcon(":/yeniÖnek/fifsot_icons/F_Icon_1.png"))
     msgBox.setText(text)
     msgBox.setIcon(QMessageBox.Icon.Critical)
     msgBox.addButton(QMessageBox.StandardButton.Yes)
