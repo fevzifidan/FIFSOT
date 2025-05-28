@@ -1,4 +1,4 @@
-from ui_files.Copy import copy
+from ui_files.Copy import _copy
 from ui_files.Count import count
 from ui_files.CreateArchive import create_archive
 from ui_files.CreateSymlink import create_symlink
@@ -6,8 +6,6 @@ from ui_files.Delete import delete
 from ui_files.Red import red
 from ui_files.Rename import rename
 from ui_files.WhoIs import whoIs
-
-from FThread import TransactionPerformer
 
 
 def initialize(obj):
@@ -27,8 +25,8 @@ def initialize(obj):
     obj.btn_short_menu_menu.clicked.connect(lambda: (obj.widget_long_menu.setVisible(True), obj.widget_short_menu.setVisible(False)))
     obj.btn_long_menu_menu.clicked.connect(lambda: (obj.widget_short_menu.setVisible(True), obj.widget_long_menu.setVisible(False)))
 
-    obj.btn_short_menu_copy.clicked.connect(lambda: obj.openWindow(copy.CopyApp))
-    obj.btn_long_menu_copy.clicked.connect(lambda: obj.openWindow(copy.CopyApp))
+    obj.btn_short_menu_copy.clicked.connect(lambda: obj.openWindow(_copy.CopyApp))
+    obj.btn_long_menu_copy.clicked.connect(lambda: obj.openWindow(_copy.CopyApp))
 
     obj.btn_short_menu_delete.clicked.connect(lambda: obj.openWindow(delete.DeleteApp))
     obj.btn_long_menu_delete.clicked.connect(lambda: obj.openWindow(delete.DeleteApp))

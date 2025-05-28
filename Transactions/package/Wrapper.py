@@ -45,12 +45,13 @@ def try_catch_wrapper(addr1:str, func, addr2:str = None) -> None:
         modifyPermissions(stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO,
                           addr1, addr2)
         
-        if Config.MAX_OPERATION_LIMIT == 0:
-            raise ProcessAborted("Max operation limit exceeded!")
+        if Config.MAX_OPERATION_LIMIT <= 0:
+            raise ProcessAborted("Maximum operation limit exceeded!")
         
         elif addr2 == None: func(addr1); addr2 = ""
 
-        else: func(addr1, addr2)
+        else:
+            func(addr1, addr2)
 
     except OSError as e:
         if e.winerror != None:

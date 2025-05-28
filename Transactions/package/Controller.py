@@ -6,6 +6,10 @@ from Transactions.package.Errors import WrongParameterError, UnsuitablePathError
 from ctypes import windll
 
 def is_special_file(*args) -> bool:
+    """
+    This function increases the probability of catching special files by checking
+    sockets and devices in addition to the special file check of the shutil function.
+    """
     for item in args:
         try:
             st = os.stat(item)

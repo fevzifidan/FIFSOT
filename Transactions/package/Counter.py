@@ -11,13 +11,12 @@ def count(addr:str, only_files:bool = False, recursive:bool = False,
     
     if not path.exists(addr):
         raise SourceNotFoundError(addr)
-    if is_special_file(addr):
+    
+    elif is_special_file(addr):
         return 0
-    if not path.isdir(addr):
-        if path.isfile(addr):
-            return 1
-        else:
-            return 0
+    
+    elif path.isfile(addr):
+        return 1
     
     params = dict()
     params.update(locals().copy())
@@ -29,15 +28,15 @@ def count(addr:str, only_files:bool = False, recursive:bool = False,
             address = item.path
             if is_special_file(address):
                 continue
-            elif condition_control(address, params) == False:
+            elif not condition_control(address, cond):
                 continue
             elif path.isfile(address):
                 counter += 1
             elif path.isdir(address):
-                if only_files == False:
+                if not only_files:
                     counter += 1
-                if recursive == True:
-                    if path.islink(address) and follow_symlinks == True:
+                if recursive:
+                    if path.islink(address) and follow_symlinks:
                         counter += count(readlink(address), only_files, recursive, follow_symlinks, cond)
                     elif path.islink(address) and follow_symlinks == False:
                         continue

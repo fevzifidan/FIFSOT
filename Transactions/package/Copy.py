@@ -10,15 +10,23 @@ import filecmp
 def copier(src:str, dest:str) -> None:
     Wrapper.try_catch_wrapper(src, Config.COPY_FUNCTION, dest)
 
-    if filecmp.cmp(src, dest, shallow=False) == False:
+    # If we do not have permission to create a file, we will probably get an error.
+    # Check if dest has been created or not
+    if not path.exists(dest):
+        # Error must already be recorded, return
+        return
+    
+    # If dest exists, check for consistency
+    if not filecmp.cmp(src, dest, shallow=False):
         status = "deleted"
         try:
             Delete.delete(dest)
         except Exception as e:
-            status = "could not be deleted"
+            if path.exists(dest):
+                status = "could not be deleted"
             pass
 
-        Config.addError(f"A file was copied inconsistently! Copied faulty file {status}!")
+        Config.addError(f"File has been copied inconsistently! Copied faulty file {status}!")
 
 
 def walker(src:str, dest:str, params:dict, recursive:bool) -> None:
@@ -48,16 +56,27 @@ def walker(src:str, dest:str, params:dict, recursive:bool) -> None:
                 return
             
             else:
-                if not params["symlinks"]:
-                    copier(linkto, dest)
-                
-                else:
-                    if (path.islink(dest) and readlink(dest) == linkto) or dest == linkto:
-                        Config.addError(ERRCODE["SymLinkCycle"])
-                    
+                if not path.islink(dest):
+                    if not params["symlinks"]:
+                        # If creation of symlink is not desired
+                        # directly overwrite
+                        copier(linkto, dest)
                     else:
+                        # We cannot create a symlink if the destination
+                        # already exists. Delete the destination and
+                        # create symlink
                         Delete.delete(dest, in_symlink_ok=True)
                         Wrapper.try_catch_wrapper(linkto, symlink, dest)
+                else:
+                    # If somehow we encounter a symlink cycle,
+                    # record it and continue
+                    if readlink(dest) == linkto or dest == linkto:
+                        Config.addError(ERRCODE["SymLinkCycle"])
+                    else:
+                        # Remove the symlink to create new symlink
+                        Symlink.delete_symlink(dest, follow_symlinks=False)
+                        Wrapper.try_catch_wrapper(linkto, symlink, dest)
+
 
         else:
             if not params["symlinks"]:
@@ -114,7 +133,7 @@ def walker(src:str, dest:str, params:dict, recursive:bool) -> None:
                 if path.isdir(src_address):
                     if not recursive: continue
 
-                    elif params["only_files"]: continue
+                    elif params["filterOnlyForFiles"]: continue
 
                     elif not path.exists(dst_address):
                         if not path.islink(src_address) or not params["symlinks"]:
@@ -129,7 +148,7 @@ def walker(src:str, dest:str, params:dict, recursive:bool) -> None:
                 walker(src_address, dst_address, params, recursive)
 
 
-def copy(src:str, dest:str, only_files:bool = False, merge_content_only:bool = False,
+def copy(src:str, dest:str, merge_content_only:bool = False,
          skip_existing_ones:bool = False, symlinks:bool = False, cond:dict = None,
          copyMetaData:bool = True, recursive:bool = True) -> None:
     

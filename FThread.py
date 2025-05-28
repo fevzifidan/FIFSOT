@@ -1,5 +1,5 @@
 from PyQt6.QtCore import QThread, pyqtSignal
-from Transactions.package import Errors
+from Transactions.package import Errors, Config
 
 class TransactionPerformer(QThread):
     numberOfTransactions = pyqtSignal(int)
@@ -44,13 +44,14 @@ class TransactionPerformer(QThread):
             ret = self.func(*self.args, **self.kwargs)
             self.lastResult.emit(ret)
         except Errors.CompletedProcessWithMissingItems as e:
-            self.info.emit(str(e))
+            self.warning.emit(str(e))
         except Errors.ProcessAborted as e:
             self.error.emit(str(e))
         except Exception as e:
             self.warning.emit(str(e))
         finally:
             self.transactionQueue.pop(0)
+            Config.resetMaxOperationLimit()
 
         self.run()
 

@@ -19,6 +19,8 @@ def condition_control(item:str, params:dict) -> bool:
         if extension != None and object_extension != extension:
             return False
     
+    if params["filterOnlyForFiles"]: return True
+    
     if name_startswith != None and not object_name.startswith(name_startswith):
         return False
     
