@@ -404,7 +404,7 @@ QLabel{
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_address">
+         <widget class="CustomLineEdit" name="lineEdit_address">
           <property name="minimumSize">
            <size>
             <width>430</width>
@@ -1063,6 +1063,13 @@ QLabel{
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CustomLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>Customs.CustomLineEdit</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../deneme.qrc"/>
   <include location="../../anaconda3/Library/deneme.qrc"/>

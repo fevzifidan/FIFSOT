@@ -298,7 +298,7 @@ QLabel{
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_source">
+            <widget class="CustomLineEdit" name="lineEdit_source">
              <property name="minimumSize">
               <size>
                <width>430</width>
@@ -369,7 +369,7 @@ QLabel{
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_destination">
+            <widget class="CustomLineEdit" name="lineEdit_destination">
              <property name="minimumSize">
               <size>
                <width>430</width>
@@ -440,7 +440,7 @@ QLabel{
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_name">
+            <widget class="CustomLineEdit" name="lineEdit_name">
              <property name="minimumSize">
               <size>
                <width>430</width>
@@ -644,7 +644,7 @@ QLabel{
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_extension">
+            <widget class="CustomLineEdit" name="lineEdit_extension">
              <property name="minimumSize">
               <size>
                <width>204</width>
@@ -688,7 +688,7 @@ QLabel{
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_excludeNameStartswith">
+            <widget class="CustomLineEdit" name="lineEdit_excludeNameStartswith">
              <property name="minimumSize">
               <size>
                <width>204</width>
@@ -736,7 +736,7 @@ QLabel{
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_nameStartswith">
+            <widget class="CustomLineEdit" name="lineEdit_nameStartswith">
              <property name="minimumSize">
               <size>
                <width>204</width>
@@ -783,7 +783,7 @@ QLabel{
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_excludeNameContains">
+            <widget class="CustomLineEdit" name="lineEdit_excludeNameContains">
              <property name="minimumSize">
               <size>
                <width>204</width>
@@ -831,7 +831,7 @@ QLabel{
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_nameContains">
+            <widget class="CustomLineEdit" name="lineEdit_nameContains">
              <property name="minimumSize">
               <size>
                <width>204</width>
@@ -957,6 +957,13 @@ QPushButton:pressed{
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CustomLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>Customs.CustomLineEdit</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../deneme.qrc"/>
   <include location="../../anaconda3/Library/deneme.qrc"/>

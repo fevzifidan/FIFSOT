@@ -229,7 +229,7 @@ QLabel{
         </spacer>
        </item>
        <item>
-        <widget class="QWidget" name="widget" native="true">
+        <widget class="QWidget" name="widget_titleBar_btn_container" native="true">
          <property name="minimumSize">
           <size>
            <width>150</width>
@@ -1053,7 +1053,7 @@ QPushButton:hover{
 	background-color:#EAEAEA;
 }
 
-#lbl_fifsot_header, #lbl_upgrade_header, #lbl_problems_header{
+#lbl_fifsot_header, #lbl_upgrade_header, #lbl_problems_header, #lbl_status_header{
 	font:24px;
 }
 
@@ -1063,6 +1063,19 @@ QPushButton:hover{
 
 #btn_go_and_learn:hover, #btn_go_version:hover, #btn_let_us_know:hover{
 	border:1px solid #2BA699;
+}
+
+#btn_terminate_transactions{
+	background-color:#FFFAFA;
+	color:#FF0000;
+}
+
+#btn_terminate_transactions:hover{
+	background-color:#D3D3D3;
+}
+
+#btn_terminate_transactions:pressed{
+	border:3px solid transparent;
 }</string>
       </property>
       <property name="currentIndex">
@@ -1081,14 +1094,14 @@ QPushButton:hover{
              <widget class="QLabel" name="lbl_fifsot_header">
               <property name="minimumSize">
                <size>
-                <width>380</width>
-                <height>24</height>
+                <width>400</width>
+                <height>30</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
-                <height>24</height>
+                <width>400</width>
+                <height>30</height>
                </size>
               </property>
               <property name="text">
@@ -1100,13 +1113,13 @@ QPushButton:hover{
              <widget class="QLabel" name="lbl_hello_message">
               <property name="minimumSize">
                <size>
-                <width>380</width>
+                <width>400</width>
                 <height>32</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>340</width>
+                <width>400</width>
                 <height>32</height>
                </size>
               </property>
@@ -1214,14 +1227,14 @@ QPushButton:hover{
              <widget class="QLabel" name="lbl_upgrade_header">
               <property name="minimumSize">
                <size>
-                <width>380</width>
-                <height>24</height>
+                <width>400</width>
+                <height>30</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
-                <height>24</height>
+                <width>400</width>
+                <height>30</height>
                </size>
               </property>
               <property name="text">
@@ -1233,13 +1246,13 @@ QPushButton:hover{
              <widget class="QLabel" name="lbl_upgrade_message">
               <property name="minimumSize">
                <size>
-                <width>380</width>
+                <width>400</width>
                 <height>32</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>340</width>
+                <width>400</width>
                 <height>32</height>
                </size>
               </property>
@@ -1347,14 +1360,14 @@ QPushButton:hover{
              <widget class="QLabel" name="lbl_problems_header">
               <property name="minimumSize">
                <size>
-                <width>380</width>
-                <height>24</height>
+                <width>400</width>
+                <height>30</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>150</width>
-                <height>24</height>
+                <width>400</width>
+                <height>30</height>
                </size>
               </property>
               <property name="text">
@@ -1366,13 +1379,13 @@ QPushButton:hover{
              <widget class="QLabel" name="lbl_problems_message">
               <property name="minimumSize">
                <size>
-                <width>380</width>
+                <width>400</width>
                 <height>32</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>340</width>
+                <width>400</width>
                 <height>32</height>
                </size>
               </property>
@@ -1467,6 +1480,161 @@ QPushButton:hover{
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="page_4">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_12">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <property name="leftMargin">
+             <number>20</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="lbl_status_header">
+              <property name="minimumSize">
+               <size>
+                <width>430</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>380</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Everything is Done!</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_status_message">
+              <property name="minimumSize">
+               <size>
+                <width>430</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>430</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>You don't have any transactions that we are currently working on.</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_status_message_2">
+              <property name="minimumSize">
+               <size>
+                <width>430</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>430</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Waiting for None transactions...</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>15</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <item>
+               <widget class="QPushButton" name="btn_terminate_transactions">
+                <property name="minimumSize">
+                 <size>
+                  <width>170</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>170</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Terminate All Transactions</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_13">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QLabel" name="lbl_status_icon">
+            <property name="minimumSize">
+             <size>
+              <width>96</width>
+              <height>96</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>96</width>
+              <height>96</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../deneme.qrc">:/yeniÖnek/fifsot_icons/online_training_2.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
     <item row="2" column="2">
@@ -1536,6 +1704,25 @@ QPushButton:hover{
       </item>
       <item>
        <widget class="QRadioButton" name="radioButton_page_3">
+        <property name="minimumSize">
+         <size>
+          <width>13</width>
+          <height>13</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>13</width>
+          <height>13</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioButton_page_4">
         <property name="minimumSize">
          <size>
           <width>13</width>
@@ -1673,6 +1860,21 @@ QScrollArea{
             <height>111</height>
            </rect>
           </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_14">
+           <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>573</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
@@ -1759,6 +1961,21 @@ QScrollArea{
             <height>111</height>
            </rect>
           </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>573</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
